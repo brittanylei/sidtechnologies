@@ -25,7 +25,7 @@ SECRET_KEY = 'vve=h45sj#c$@0f0%dro%2l8sl%y(kg1rippsbwm%$7e6#q-66'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', '35.227.188.146']
 
 
 # Application definition
@@ -76,8 +76,20 @@ WSGI_APPLICATION = 'SIDTechnologies.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        #since SSL connections are forced, must include path to the cert files
+        #this is my personal path to test
+        'OPTIONS': {
+            'ssl':{ 'ca':'~/Documents/computer_sci/_cmps115/sidtechnologies/Front_End/SIDTech/server-ca.pem',
+                    'cert':'~/Documents/computer_sci/_cmps115/sidtechnologies/Front_End/SIDTech/client-cert.pem',
+                    'key': '~/Documents/computer_sci/_cmps115/sidtechnologies/Front_End/SIDTech/client-key.pem'
+                    }
+                },
+        'NAME': 'sidtech',
+        'USER': 'gdeguzma',
+        'PASSWORD': 'cmps115',
+        'HOST': '35.227.188.146', #google cloud instance ip
+        'PORT': '3306',
     }
 }
 
