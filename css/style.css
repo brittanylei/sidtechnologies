@@ -113,12 +113,51 @@
 	background-color: #655B80;
 }
 
+.general-sprint {
+	float: left;
+	column-count: 2
+	margin-left: 20px;
+}
 
+h2 {
+	color: #655B80;
+	column-span: all;
+}
 
+.column1 {
+	float: left;
+	margin: 0px;
+	width: 20%;
+}
 
+.column2 {
+	float: left;
+	margin: 0px;
+	width: 20%;
+}
 
+.content-section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+}
 
+.titles {
+	float: left;
+	font-size: 17px;
+}
 
+.entries {
+	float: right;
+	font-size: 17px;
+}
+
+.right-container {
+	float: right;
+	height: 500px;
+	font-size: 17px;
+	margin-right: 20px;
+}
 
 
 
