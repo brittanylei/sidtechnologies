@@ -13,8 +13,10 @@
       <br> </br>
 
     </h2>
-    <h2>Header</h2>
-      Text
+
+
+
+
     <h2>Header</h2>
       Text
     <h2>Header</h2>
@@ -22,21 +24,9 @@
     <p>
       <ul>
       <li>
-        <a href="{% url 'mainpage:page2' %}">Link to Page 2</a>
+        <a href="{% url 'getProject' %}">Get Project</a>
       </li>
     </ul>
       </ol>
     </p>
 </html>
-
-
-
-<!-- {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %} -->

@@ -1,33 +1,37 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template import loader
 
-from .models import Question
-
+from .forms import ProjectForm
 
 def index(request):
-    # gets list from Question
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
     template = loader.get_template('mainpage/index.html')
     context = {
-        'latest_question_list': latest_question_list,
     }
     return HttpResponse(template.render(context, request))
 
 
 def redirect(request):
     template = loader.get_template('mainpage/page2.html')
-    context = {
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse(template.render(contexet, request))
 
-def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+    return HttpResponse(template.render({}, request))
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+def getProject(request):
+ # if this is a POST request we need to process the form data
+    template = loader.get_template('mainpage/getProject.html')
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ProjectForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ProjectForm()
+
+    return HttpResponse(template.render({'form':form}, request))
