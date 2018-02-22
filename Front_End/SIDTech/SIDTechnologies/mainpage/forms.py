@@ -1,4 +1,6 @@
 from django import forms
+from .models import *
+
 
 class ProjectForm(forms.Form):
     owner = forms.CharField(label='Project Owner', max_length=100)
