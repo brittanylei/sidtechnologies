@@ -27,3 +27,15 @@ class Sprint(models.Model):
         return self.projectName
 
     # write a function to write form data to this class
+
+class Goals(models.Model):
+    # multiple user stories per goal (one_to_many)
+    name = models.charField(max_length=100)
+    text = models.charField(max_length=200)
+    moscow = models.charField(max_length=50)
+
+
+class User_Stories(models.Model):
+    text = models.charField(max_length=200)
+    # link to a goal (many_to_one)
+    user_pts = models.IntegerField(default=0)
