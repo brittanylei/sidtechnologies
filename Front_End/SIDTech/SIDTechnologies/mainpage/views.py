@@ -27,7 +27,12 @@ def getProject(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
+            project = ProjectForm.save(commit=False)
+            store = Store.Objects.get(store_name=store_name)
+            project.store = store
+            project.save()
             # redirect to a new URL:
+
             return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
