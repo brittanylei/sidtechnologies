@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.template import loader
 
 from .forms import ProjectForm
-
+from .models import *
 def index(request):
     template = loader.get_template('mainpage/index.html')
     context = {
@@ -26,9 +26,9 @@ def getProject(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
+            # perhaps store data into database
             # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/page2/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
