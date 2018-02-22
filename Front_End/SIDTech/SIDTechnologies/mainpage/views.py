@@ -49,6 +49,6 @@ def getProject(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-    form = ProjectForm()
+        form = ProjectForm()
 
     return HttpResponse(template.render({'form':form}, request))
