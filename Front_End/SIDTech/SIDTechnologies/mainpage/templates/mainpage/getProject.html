@@ -3,9 +3,10 @@
     <h1> S.I.D. Technologies </h1>
 
     <h2>Project Form Fill</h2>
-<form action="/mainpage/page2.html" method="post">
+<form action="/mainpage/index.html" method="post">
   {% csrf_token %}
   <table>
+    {{ form.errors }}
     {{ form }}
   </table>
   <input type="submit" value="Submit" />
