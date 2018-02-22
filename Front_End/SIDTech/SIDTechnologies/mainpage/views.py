@@ -7,9 +7,19 @@ from .forms import ProjectForm
 
 def index(request):
     template = loader.get_template('mainpage/index.html')
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
+    if request.method == 'GET':
+        data = Sprint.objects.all()
+        sprints = {
+            'sprint':data
+        }
+
+        return HttpResponse(template.render(sprints, request))
+
+    else:
+        context = {
+
+        }
+        return HttpResponse(template.render(context, request))
 
 
 def redirect(request):
@@ -37,6 +47,6 @@ def getProject(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = ProjectForm()
+    form = ProjectForm()
 
     return HttpResponse(template.render({'form':form}, request))
