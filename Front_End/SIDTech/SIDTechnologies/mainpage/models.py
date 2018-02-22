@@ -30,12 +30,12 @@ class Sprint(models.Model):
 
 class Goals(models.Model):
     # multiple user stories per goal (one_to_many)
-    name = models.charField(max_length=100)
-    text = models.charField(max_length=200)
-    moscow = models.charField(max_length=50)
+    name = models.CharField(max_length=100)
+    text = models.CharField(max_length=200)
+    moscow = models.CharField(max_length=50)
 
 
 class User_Stories(models.Model):
-    text = models.charField(max_length=200)
+    text = models.CharField(max_length=200)
     # link to a goal (many_to_one)
     user_pts = models.IntegerField(default=0)
