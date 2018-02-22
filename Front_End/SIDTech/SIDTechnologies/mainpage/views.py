@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template import loader
 
-from .forms import ProjectForm
+# from .forms import ProjectForm
 from .models import *
 
 def index(request):
@@ -33,13 +33,13 @@ def getProject(request):
     template = loader.get_template('mainpage/getProject.html')
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = ProjectForm(request.POST)
+        form = SprintForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
-            # project = ProjectForm.save(commit=False)
-            project = ProjectForm.objects.get()
+            project = SprintForm.save(commit=False)
+            # project = SprintForm.objects.get()
             store = Store.Objects.get(store_name=store_name)
             project.store = store
             project.save()
@@ -49,6 +49,6 @@ def getProject(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = ProjectForm()
+        form = SprintForm()
 
     return HttpResponse(template.render({'form':form}, request))
