@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 from .forms import ProjectForm
 
@@ -27,6 +28,15 @@ class Sprint(models.Model):
         return self.projectName
 
     # write a function to write form data to this class
+
+class SprintForm(ModelForm):
+    class Meta:
+        model = Sprint
+        fields = ['projectName', 'projectOwner', 'scrumMaster', 'team',
+        'sprintNum', 'sprintPlanDate', 'sprintRevDate', 'sprintRetroDate',
+        'scrumMeetDate']
+
+
 
 class Goals(models.Model):
     # multiple user stories per goal (one_to_many)
