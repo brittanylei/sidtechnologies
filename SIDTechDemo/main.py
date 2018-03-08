@@ -14,16 +14,23 @@ template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(template_dir))
 
+class User(ndb.Model):
+    username = ndb.StringProperty()
+    email = ndb.StringProperty()
+    date = ndb.DateProperty(auto_now = True)
+    def history_url(self):
+        return '/history?key=' + self.key.urlsafe()
+
 class Sprint(ndb.Model):
     projectName = ndb.StringProperty()
     projectOwner = ndb.StringProperty()
     scrumMaster = ndb.StringProperty()
     team = ndb.StringProperty()
-    sprintNum = ndb.IntegerProperty()
-    sprintPlanDate = ndb.DateTimeProperty()
-    sprintRevDate = ndb.DateTimeProperty()
-    sprintRetroDate = ndb.DateTimeProperty()
-    scrumMeetDate = ndb.DateTimeProperty()
+    sprintNum = ndb.StringProperty()
+    sprintPlanDate = ndb.StringProperty()
+    sprintRetroDate = ndb.StringProperty()
+    scrumMeetDate = ndb.StringProperty()
+    user_key = ndb.KeyProperty(kind=User)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -48,14 +55,14 @@ class MainHandler(webapp2.RequestHandler):
             if sprints:
                 template = jinja_environment.get_template('main.html')
 
-                template_vals = {'user':user, #'sprints':sprint,
+                template_vals = {'user':user, 'sprints':sprints,
                 'logout_url':logout_url}
                 self.response.write(template.render(template_vals))
             else:
                 self.redirect('/getProject')
         else:
             login_url = users.CreateLoginURL('/')
-            template = jinja_environment.get_template('main.html')
+            template = jinja_environment.get_template('home.html')
             template_vals = {'login_url':login_url}
             self.response.write(template.render(template_vals))
 
@@ -67,9 +74,59 @@ class MainHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
 
         sprint = Sprint.query(Sprint.user_key == user.key).get()
-        # sprint.put()
+        sprint.put()
+
+        self.redirect('/')
+
+class ProjectHandler(webapp2.RequestHandler):
+
+    def get(self):
+        # get info
+        current_user = users.get_current_user()
+        email = current_user.email()
+
+
+        user = User.query(User.email == email).get()
+
+        user_key = user.key
+        template = jinja_environment.get_template('main.html')
+        logout_url = users.CreateLogoutURL('/')
+        self.response.write(
+        template.render({'user':user,'logout_url':logout_url})
+        )
+
+    def post(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+
+
+        user = User.query(User.email == email).get()
+
+        user_key = user.key
+
+        projectName = self.request.get('projname')
+        projectOwner = self.request.get('projowner')
+        scrumMaster = self.request.get('scrummaster')
+        team = self.request.get('team')
+        sprintNum = self.request.get('sprintnum')
+        sprintPlanDate = self.request.get('sprintplan')
+        sprintRetroDate = self.request.get('sprintretro')
+        scrumMeetDate = self.request.get('scrummeet')
+
+
+        newProject = Sprint(projectName = projectName,
+        projectOwner = projectOwner, scrumMaster = scrumMaster, team = team,
+        sprintNum=sprintNum, sprintPlanDate = sprintPlanDate,
+        sprintRetroDate = sprintRetroDate, scrumMeetDate = scrumMeetDate,
+        user_key = user_key)
+
+        newProject.put()
+
+
+
         self.redirect('/')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/getProject', ProjectHandler),
 ], debug=True)
