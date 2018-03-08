@@ -2,6 +2,13 @@
 
 
 <head>
+  <style>
+    td {
+       border-bottom: 1px solid #ddd;
+       text-align: left;
+       border-spacing: 1000px;
+    }
+  </style>
   <div id="header">
 
           <h1>Main</h1>
@@ -67,18 +74,44 @@
 
 
    <ul>
-      {% for sprint in sprints %}
-      <!-- {{sprint.username}} @ {{sprint.date_time}} -->
-      <br>
-      {{sprint.projectName}}
-      <br>
-      {% endfor %}
+     <table class="center" width = 75%>
+        {% for sprint in sprints %}
+        <!-- {{sprint.username}} @ {{sprint.date_time}} -->
+          <tr>
+            <div class="sprints">
+              <td width=100px>{{sprint.projectName}}</td>
+              <td width=100px>{{sprint.projectOwner}}</td>
+              <td width=100px>{{sprint.scrumMaster}}</td>
+              <td width=100px>{{sprint.team}}</td>
+              <td width=100px>{{sprint.sprintNum}}</td>
+              <td width=100px>{{sprint.sprintPlanDate}}</td>
+              <td width=100px>{{sprint.sprintRetroDate}}</td>
+              <td width=100px>{{sprint.scrumMeetDate}}</td>
+            </div>
+          </tr>
+        {% endfor %}
+      </table>
    </ul>
 </body>
 
 <form action="/">
 <p><a href="">Delete</a></p>
 </form>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDX8In6v77C3gMQB6L99mF2PQyLBtul28g",
+    authDomain: "silver-surfer-services.firebaseapp.com",
+    databaseURL: "https://silver-surfer-services.firebaseio.com",
+    projectId: "silver-surfer-services",
+    storageBucket: "silver-surfer-services.appspot.com",
+    messagingSenderId: "272241968147"
+  };
+  firebase.initializeApp(config);
+</script>
 
 <!--
 <!DOCTYPE html>
