@@ -46,4 +46,4 @@ class Goals(models.Model):
     text = models.CharField(max_length=200)
     moscow = models.CharField(max_length=50)
     # multiple user stories per goal
-    user_story = models.ForeignKey(User_Stories)
+    user_story = models.ForeignKey(User_Stories, models.PROTECT)

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+
+<head>
+  <div id="header">
+
+          <h1>Main</h1>
+          <ul>
+            <li><a href="/" id="home">Home</a></li>
+            <li><a href="/getProject" class="active" id="create">Start Project</a></li>
+            <!-- <li><a href="/budgets">View Previous Budgets</a></li> -->
+            <li style="float: right"><form action="/"><a class="button" id="out" href="{{logout_url}}">Log Out</a></form></li>
+          </ul>
+
+      </div>
+
+</head>
+
+
+<body>
+
+  <form action="/getProject" method="post">
+    <table class="center" width = 70%>
+      <tr>
+        <th>Project Name: </th>
+        <th>Project Owner: </th>
+        <th>Scrum Master: </th>
+        <th>Team: </th>
+        <th>Sprint: </th>
+        <th>Sprint Planning Date: </th>
+        <th>Sprint Retrospective: </th>
+        <th>Scrum Meeting: </th>
+
+      </tr>
+
+      <tr>
+        <td>
+          <input name='projname' class="inline" placeholder='Name' required>
+        </td>
+        <td>
+          <input name='projowner' class="inline" placeholder='Name' required>
+        </td>
+        <td>
+          <input name='scrummaster' class="inline" placeholder='Name' required>
+        </td>
+        <td>
+          <input name='team' class="inline" placeholder='Amount' type="number" step='1' required>
+        </td>
+        <td>
+          <input name='sprintnum' class="inline" placeholder='Amount' type="number" step='1' required>
+        </td>
+        <td>
+          <input name='sprintplan' class="inline" placeholder='Date' required>
+        </td>
+        <td>
+          <input name='sprintretro' class="inline" placeholder='Date' required>
+        </td>
+        <td>
+          <input name='scrummeet' class="inline" placeholder='Date' required>
+        </td>
+        <td id="add_box">
+          <p><input type="submit" value="Add" id="add_button"> </p>
+        </td>
+      </tr>
+    </table>
+   </form>
+
+
+   <ul>
+      {% for sprint in sprints %}
+      <!-- {{sprint.username}} @ {{sprint.date_time}} -->
+      <br>
+      {{sprint.projectName}}
+      <br>
+      {% endfor %}
+   </ul>
+</body>
+
+<form action="/">
+<p><a href="">Delete</a></p>
+</form>
+
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 400px;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map">Map Example</div>
+    <script>
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 37.7749, lng: -122.4194},
+          zoom: 8
+        });
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPkTV4qcsdRt910uhsirZUjgc7eTzKe3g&callback=initMap"
+    async defer></script>
+  </body>
+</html>
