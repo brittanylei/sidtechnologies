@@ -1,16 +1,9 @@
 $(document).ready(function () {
   //Initialize the Firebase App
-  Auth.init(authStateRouter);
+ 
+firebase.initializeApp(config);
+  }
 
-var config = {
-      apiKey: "AIzaSyDX8In6v77C3gMQB6L99mF2PQyLBtul28g",
-      authDomain: "silver-surfer-services.firebaseapp.com",
-      databaseURL: "https://silver-surfer-services.firebaseio.com",
-      projectId: "silver-surfer-services",
-      storageBucket: "silver-surfer-services.appspot.com",
-      messagingSenderId: "272241968147"
-  };
-  firebase.initializeApp(config);
 
   //create firebase references
   var Auth = firebase.auth();
@@ -37,7 +30,7 @@ var redirect = function(to) {
 //Redirect to Home
 var redirectToHome = function(user) {
   if(user){
-    redirect('index1.html');
+    redirect('index.html');
   }
 }
 
@@ -70,6 +63,7 @@ var authStateRouter = function(){
   if( user === null ){ //User is not logged in
     if( currentPage() !== 'login' ){//IF user is not on login page
       //Open the login page
+      $('.logout-link').hide();
       redirectToLogin(user)
     }
   } else { //User is logged in
@@ -84,7 +78,9 @@ var authStateRouter = function(){
     }
   }
 }
-
+ Auth.init(authStateRouter);
+ 
+ 
 $('#register').on('click', function(e){
   e.preventDefault();
   var data = {
