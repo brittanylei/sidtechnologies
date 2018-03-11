@@ -1,0 +1,11 @@
+#!/Users/gerome/Documents/computer_sci/_cmps115/sidtechnologies/Front_End/SIDTech/SIDTechnologies/bin/python3.5
+
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from pip import main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())

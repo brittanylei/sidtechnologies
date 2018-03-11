@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'sidtech',
         'USER': 'gdeguzma',
         'PASSWORD': 'cmps115',
-        'HOST': '35.227.188.146', #google cloud instance ip
+        'HOST': '35.227.188.146,', #google cloud instance ip
         'PORT': '3306',
     }
 }
