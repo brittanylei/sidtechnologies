@@ -30,7 +30,24 @@ class Sprint(ndb.Model):
     sprintPlanDate = ndb.StringProperty()
     sprintRetroDate = ndb.StringProperty()
     scrumMeetDate = ndb.StringProperty()
-    user_key = ndb.KeyProperty(kind=User)
+    user_key = ndb.KeyProperty(kind = User)
+
+class Task(ndb.Model):
+    taskDescription = ndb.StringProperty()
+    taskOwner = ndb.StringProperty()
+    taskLength = ndb.StringProperty()
+    taskNotes = ndb.StringProperty()
+    taskStatus = ndb.StringProperty()
+    user_key = ndb.KeyProperty(kind = User)
+    sprint_key = ndb.KeyProperty(kind = Sprint)
+
+    taskStatus = 'Task Created'
+
+    def setInProgress(self):
+        self.taskStatus = 'In Progress'
+
+    def setDone(self):
+        self.taskStatus = 'Done'
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -52,14 +69,23 @@ class MainHandler(webapp2.RequestHandler):
                 user = User.query(User.username == username).get()
 
             sprints = Sprint.query(Sprint.user_key == user.key).fetch()
+
             if sprints:
                 template = jinja_environment.get_template('main.html')
-
                 template_vals = {'user':user, 'sprints':sprints,
                 'logout_url':logout_url}
+
+                tasks = Task.query(Task.user_key == user.key)
+
+                if tasks:
+                    template_vals['tasks'] = tasks
+                else:
+                    template_vals['tasks'] = []
+
                 self.response.write(template.render(template_vals))
             else:
                 self.redirect('/getProject')
+
         else:
             login_url = users.CreateLoginURL('/')
             template = jinja_environment.get_template('home.html')
@@ -98,8 +124,6 @@ class ProjectHandler(webapp2.RequestHandler):
     def post(self):
         current_user = users.get_current_user()
         email = current_user.email()
-
-
         user = User.query(User.email == email).get()
 
         user_key = user.key
@@ -114,19 +138,69 @@ class ProjectHandler(webapp2.RequestHandler):
         scrumMeetDate = self.request.get('scrummeet')
 
 
-        newProject = Sprint(projectName = projectName,
+        newSprint = Sprint(projectName = projectName,
         projectOwner = projectOwner, scrumMaster = scrumMaster, team = team,
-        sprintNum=sprintNum, sprintPlanDate = sprintPlanDate,
+        sprintNum = sprintNum, sprintPlanDate = sprintPlanDate,
         sprintRetroDate = sprintRetroDate, scrumMeetDate = scrumMeetDate,
         user_key = user_key)
 
-        newProject.put()
+        newSprint.put()
+        self.redirect('/')
 
+class TaskHandler(webapp2.RequestHandler):
 
+    def get(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+        user_key = user.key
 
+        template = jinja_environment.get_template('main.html')
+        logout_url = users.CreateLogoutURL('/')
+        self.response.write(
+        template.render({'user':user,'logout_url':logout_url})
+        )
+
+    def post(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+
+        user_key = user.key
+
+        taskDescription = self.request.get('taskDescription')
+        taskOwner = self.request.get('taskOwner')
+        taskLength = self.request.get('taskLength')
+        taskNotes = self.request.get('taskNotes')
+
+        sprint = Sprint.query(Sprint.user_key == user.key).get()
+
+        newTask = Task(taskDescription = taskDescription, taskOwner = taskOwner,
+        taskLength = taskLength, taskNotes = taskNotes, user_key = user.key,
+        sprint_key = sprint.key)
+
+        newTask.put()
+        self.redirect('/')
+
+class DeleteHandler(webapp2.RequestHandler):
+    def post(self):
+        task_safekey = self.request.get('key')
+        ndb.Key(urlsafe=task_safekey).delete()
+        self.redirect('/')
+
+class CompletedTaskHandler(webapp2.RequestHandler):
+    def post(self):
+        task_safekey = self.request.get('key')
+        task_key = ndb.Key(urlsafe=task_safekey)
+        task = task_key.get()
+        task.setDone()
+        task.put()
         self.redirect('/')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/getProject', ProjectHandler),
+    ('/getTask', TaskHandler),
+    ('/delete', DeleteHandler),
+    ('/taskDone', CompletedTaskHandler),
 ], debug=True)
