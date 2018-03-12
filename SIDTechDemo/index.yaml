@@ -11,7 +11,21 @@ indexes:
 # your application using appcfg.py.
 
 - kind: User
-  ancestor: yes
   properties:
   - name: email
+    direction: desc
+
+- kind: Sprint
+  properties:
+  - name: user_key
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: user_key
+    direction: desc
+
+- kind: Goal
+  properties:
+  - name: user_key
     direction: desc
