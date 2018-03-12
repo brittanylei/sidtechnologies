@@ -25,7 +25,7 @@
 		<!-- <a href="projectbacklog.html">Project Backlog</a> -->
 		<a href="/getSprint">Current Sprint</a>
 		<a href="/getTask">Scrum Board</a>
-		<a style="float:right" href="#logout">Logout</a>
+		<a style="float:right" href="{{logout_url}}">Logout</a>
  	</nav>
 
 	<section class="general-sprint content-section">
@@ -33,23 +33,63 @@
 			<button class="iconbtn" id="btnGSI"><i class="far fa-edit"></i></button>
 		</h2>
 		<table>
-			<tr><td>Product Owner</td><td>Eva Lomazov</td></tr>
-			<tr><td>Scrum Master</td><td>Emma Seligson</td></tr>
-			<tr><td>Development Team</td><td>Gerome Deguzman, Tian Lun Lee, Brittany Lei</td></tr>
-			<tr><td>Sprint</td><td>3</td></tr>
-			<tr><td>Sprint Planning Meeting</td><td>3/1/2018</td></tr>
-			<tr><td>Scrum Times</td><td>Monday: 8:00pm, Wednesday: 4:00pm, Friday: 11:00am </td></tr>
-			<tr><td>Sprint Review Meeting</td><td>3/12/2018</td></tr>
-			<tr><td>Retrospective</td><td>N/A</td></tr>
+      {% for sprint in sprints %}
+      <!-- {{sprint.username}} @ {{sprint.date_time}} -->
+        <tr>
+          <div class="sprints">
+            <tr><td>Product Name</td><td>{{sprint.projectName}}</td></tr>
+            <tr><td>Product Owner</td><td>{{sprint.projectOwner}}</td></tr>
+            <tr><td>Scrum Master</td><td>{{sprint.scrumMaster}}</td></tr>
+            <tr><td>Development Team</td><td>{{sprint.team}}</td></tr>
+            <tr><td>Sprint</td><td>{{sprint.sprintNum}}</td></tr>
+            <tr><td>Sprint Planning Meeting</td><td>{{sprint.sprintPlanDate}}</td></tr>
+            <tr><td>Scrum Times</td><td>{{sprint.scrumMeetDate}}</td></tr>
+            <tr><td>Retrospective</td><td>{{sprint.sprintRetroDate}}</td></tr>
+          </div>
+        </tr>
+      {% endfor %}
 		</table>
+
+
+
 	</section>
 
-	<section class="right-container content-section">
+  <form action="/getTask" method="post">
+   <table class="center" width = 70%>
+     <tr>
+       <th>Task Description: </th>
+       <th>Task Owner: </th>
+       <th>Task Length: </th>
+       <th>Task Notes: </th>
+     </tr>
+
+     <tr>
+       <td>
+         <input name='taskDescription' class="inline" placeholder='Name' required>
+       </td>
+       <td>
+         <input name='taskOwner' class="inline" placeholder='Name' required>
+       </td>
+       <td>
+         <input name='taskLength' class="inline" type="number" step='1' placeholder='Hours' required>
+       </td>
+       <td>
+         <input name='taskNotes' class="inline" placeholder='Team member, notes, etc.'>
+       </td>
+       <td id="add_box">
+         <p><input type="submit" value="Add Task" id="add_button"> </p>
+       </td>
+     </tr>
+   </table>
+  </form>
+
+	<section class="left-container content-section">
 		<h2>TODO List</h2>
-		<ul><i class="far fa-circle"></i>	This is a todo list</ul>
-		<ul><i class="far fa-circle"></i>	Once something is done, check the circle and it will move to a completed list</ul>
+    {% for task in tasks %}
+		<ul><i class="far fa-circle"></i>{{task.taskDescription}}</ul>
+    {% endfor %}
 		<h2>Completed</h2>
-		<ul><i class="far fa-check-circle"></i>    This isn't functional yet, but it will be soon and will look like this.</ul>
+		<!-- <ul><i class="far fa-check-circle"></i>    This isn't functional yet, but it will be soon and will look like this.</ul> -->
 
 	</section>
 

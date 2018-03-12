@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 
+<head>
 
+    <title>Sid Technologies</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Be Agile on the go!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
+</head>
 <head>
   <nav class="topnav">
     <img src="img/basicsidlogo.png" class="logo-img"/>
@@ -20,7 +34,7 @@
        border-spacing: 1000px;
     }
   </style>
-  <div id="header">
+  <!-- <div id="header">
 
           <h1>Main</h1>
           <ul>
@@ -31,7 +45,7 @@
             <li style="float: right"></li>
           </ul>
 
-      </div>
+      </div> -->
 
 </head>
 
@@ -138,9 +152,9 @@
               <td width=100px>{{goal.goalDescription}}</td>
               <td width=100px>{{goal.moscow}}</td>
               <td width=100px> Status: {{goal.goalStatus}}</td>
-              <form action='/goalDone?key={{goal.key.urlsafe()}}' method='post'>
+              <!-- <form action='/goalDone?key={{goal.key.urlsafe()}}' method='post'>
                 <td><input type="submit" name="done" value="Mark as Done"></td>
-              </form>
+              </form> -->
               <form action='/delete?key={{goal.key.urlsafe()}}' method='post'>
                <td><input type="submit" name="key" value="Delete Goal"></td>
              </form>
@@ -182,9 +196,9 @@
               <td width=100px>{{story.storyDescription}}</td>
               <td width=100px>{{story.storyPoints}}</td>
               <td width=100px> Status: {{story.storyStatus}}</td>
-              <form action='/storyDone?key={{story.key.urlsafe()}}' method='post'>
+              <!-- <form action='/storyDone?key={{story.key.urlsafe()}}' method='post'>
                 <td><input type="submit" name="done" value="Mark as Done"></td>
-              </form>
+              </form> -->
               <form action='/delete?key={{story.key.urlsafe()}}' method='post'>
                <td><input type="submit" name="key" value="Delete User Story"></td>
              </form>
@@ -240,9 +254,9 @@
              <td width=100px></td>
              {% endif %}
              <td width=100px> Status: {{task.taskStatus}}</td>
-             <form action='/taskDone?key={{task.key.urlsafe()}}' method='post'>
+             <!-- <form action='/taskDone?key={{task.key.urlsafe()}}' method='post'>
                <td><input type="submit" name="done" value="Mark as Done"></td>
-             </form>
+             </form> -->
              <form action='/delete?key={{task.key.urlsafe()}}' method='post'>
               <td><input type="submit" name="key" value="Delete Task"></td>
             </form>

@@ -132,11 +132,11 @@ class MainHandler(webapp2.RequestHandler):
                 user = User.query(User.username == username).get()
 
             sprints = Sprint.query(Sprint.user_key == user.key).fetch()
-
+            tasks = Task.query(Task.user_key == user.key).fetch()
             if sprints:
-                template = jinja_environment.get_template('main.html')
+                template = jinja_environment.get_template('index.html')
                 template_vals = {'user':user, 'sprints':sprints,
-                'logout_url':logout_url}
+                'logout_url':logout_url, 'tasks':tasks}
 
                 tasks = Task.query(Task.user_key == user.key)
                 goals = Goal.query(Goal.user_key == user.key)
@@ -190,7 +190,7 @@ class ProjectHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
 
         user_key = user.key
-        template = jinja_environment.get_template('main.html')
+        template = jinja_environment.get_template('index.html')
         logout_url = users.CreateLogoutURL('/')
         self.response.write(
         template.render({'user':user,'logout_url':logout_url})
@@ -230,7 +230,7 @@ class GoalHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
         user_key = user.key
 
-        template = jinja_environment.get_template('main.html')
+        template = jinja_environment.get_template('index.html')
         logout_url = users.CreateLogoutURL('/')
 
         goals = Goal.query(Goal.user_key == user.key)
@@ -255,7 +255,7 @@ class GoalHandler(webapp2.RequestHandler):
         sprint_key = sprint.key)
 
         newGoal.put()
-        self.redirect('/')
+        self.redirect('/getSprint')
 
 class UserStoryHandler(webapp2.RequestHandler):
 
@@ -265,7 +265,7 @@ class UserStoryHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
         user_key = user.key
 
-        template = jinja_environment.get_template('main.html')
+        template = jinja_environment.get_template('currentsprint.html')
         stories = UserStory.query(UserStory.user_key == user.key)
         logout_url = users.CreateLogoutURL('/')
         self.response.write(
@@ -290,7 +290,7 @@ class UserStoryHandler(webapp2.RequestHandler):
         sprint_key = sprint.key)
 
         newUserStory.put()
-        self.redirect('/')
+        self.redirect('/getSprint')
 
 class SprintHandler(webapp2.RequestHandler):
     def get(self):
@@ -299,10 +299,14 @@ class SprintHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
         user_key = user.key
 
+        stories = UserStory.query(UserStory.user_key == user.key)
+        goals = Goal.query(Goal.user_key == user.key)
+
         template = jinja_environment.get_template('currentsprint.html')
         logout_url = users.CreateLogoutURL('/')
         self.response.write(
-        template.render({'user':user,'logout_url':logout_url})
+        template.render({'user':user,'logout_url':logout_url,
+            'stories':stories, 'goals':goals})
         )
 
 class TaskHandler(webapp2.RequestHandler):
@@ -312,11 +316,12 @@ class TaskHandler(webapp2.RequestHandler):
         email = current_user.email()
         user = User.query(User.email == email).get()
         user_key = user.key
+        tasks = Task.query(Task.user_key == user.key)
 
-        template = jinja_environment.get_template('index.html')
+        template = jinja_environment.get_template('scrumboard.html')
         logout_url = users.CreateLogoutURL('/')
         self.response.write(
-        template.render({'user':user,'logout_url':logout_url})
+        template.render({'user':user,'logout_url':logout_url,'tasks':tasks})
         )
 
     def post(self):

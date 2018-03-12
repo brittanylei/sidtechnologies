@@ -22,7 +22,7 @@
 		<!-- <a href="projectbacklog.html">Project Backlog</a> -->
 		<a href="/getSprint">Current Sprint</a>
 		<a href="/getTask">Scrum Board</a>
-		<a style="float:right" href="#logout">Logout</a>
+		<a style="float:right" href="{{logout_url}}">Logout</a>
  	</nav>
 
 
@@ -43,50 +43,19 @@
 			</h2>
 			<div class="row">
 				<!-- There will be one of these for each user story -->
+        {% for story in stories %}
 				<div class="col-md-6">
 					<div class="user-story well">
 						<p class="title">
-							User Story Name
+							User Story Points: {{story.storyPoints}}
 							<button class="iconbtn" id="editUS"><i class="far fa-edit"></i></button>
 						</p>
 						<p class="details">
-							Here's where the details of the story can go idk
+							{{story.storyDescription}}
 						</p>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="user-story well">
-						<p class="title">
-							User Story Name
-							<button class="iconbtn" id="editUS"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the story can go idk
-						</p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="user-story well">
-						<p class="title">
-							User Story Name
-							<button class="iconbtn" id="editUS"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the story can go idk
-						</p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="user-story well">
-						<p class="title">
-							User Story Name
-							<button class="iconbtn" id="editUS"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the story can go idk
-						</p>
-					</div>
-				</div>
+        {% endfor %}
 			</div>
 		</section>
 
@@ -97,50 +66,19 @@
 			</h2>
 			<div class="row">
 				<!-- There will be one of these for each user story -->
+        {% for goal in goals %}
 				<div class="col-md-12">
 					<div class="goal well">
 						<p class="title">
-							Goal Name
+							MoSCoW: {{goal.moscow}}
 							<button class="iconbtn" id="editGoal"><i class="far fa-edit"></i></button>
 						</p>
 						<p class="details">
-							Here's where the details of the goal can go idk
+							{{goal.goalDescription}}
 						</p>
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="goal well">
-						<p class="title">
-							Goal Name
-							<button class="iconbtn" id="editGoal"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the goal can go idk
-						</p>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="goal well">
-						<p class="title">
-							Goal Name
-							<button class="iconbtn" id="editGoal"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the goal can go idk
-						</p>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="goal well">
-						<p class="title">
-							Goal Name
-							<button class="iconbtn" id="editGoal"><i class="far fa-edit"></i></button>
-						</p>
-						<p class="details">
-							Here's where the details of the goal can go idk
-						</p>
-					</div>
-				</div>
+        {% endfor %}
 			</div>
 		</section>
 
@@ -154,15 +92,15 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <form>
-	    	Name:<br>
-	    	<input type="text" name="userstoryname"><br>
-	    	Details:<br>
+	    <form action="/getUserStory" method="post">
+	    	Description:<br>
+	    	<input type="text" name="storyDescription"><br>
+	    	<!-- Details:<br>
 	    	<input type="text" name="userstorydetails"><br>
 	    	Goal Association:<br>
-	    	<input type="text" name="goalassociation"><br>
+	    	<input type="text" name="goalassociation"><br> -->
 	    	Number of Story Points:<br>
-	    	<input type="text" name="numberstorypoints"><br>
+	    	<input type="text" name="storyPoints"><br>
 	    	<input type="submit" value="Save">
 	    </form>
 	  </div>
@@ -173,13 +111,13 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <form>
-	    	Name:<br>
-	    	<input type="text" name="goalname"><br>
+	    <form action="/getGoal" method="post">
+	    	<!-- Name:<br>
+	    	<input type="text" name="goalname"><br> -->
 	    	Details:<br>
-	    	<input type="text" name="goaldetails"><br>
+	    	<input type="text" name="goalDescription"><br>
 	    	MoSCoW Rating:<br>
-	    	<input type="text" name="moscowrating"><br>
+	    	<input type="text" name="moscow"><br>
 	    	<input type="submit" value="Save">
 	    </form>
 	  </div>
