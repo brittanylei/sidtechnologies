@@ -7,6 +7,15 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /css
+  static_dir: css
+
+- url: /javascript
+  static_dir: javascript
+
+- url: /img
+  static_dir: img
+
 - url: .*
   script: main.app
 
