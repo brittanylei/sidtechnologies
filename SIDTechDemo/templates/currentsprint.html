@@ -17,21 +17,21 @@
 <body>
 	<nav class="topnav">
 		<img src="img/basicsidlogo.png" class="logo-img"/>
-		<a href="index.html">Home</a>
+		<a href="/">Home</a>
 
-		<a href="projectbacklog.html">Project Backlog</a>
-		<a href="currentsprint.html">Current Sprint</a>
-		<a href="scrumboard.html">Scrum Board</a>
+		<!-- <a href="projectbacklog.html">Project Backlog</a> -->
+		<a href="/getSprint">Current Sprint</a>
+		<a href="/getTask">Scrum Board</a>
 		<a style="float:right" href="#logout">Logout</a>
  	</nav>
 
-	
+
 	<div class="container">
 		<section class="project-story">
 			<h2>
 				Sprint Story
 			</h2>
-			<p> 
+			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</p>
 		</section>
@@ -145,8 +145,8 @@
 		</section>
 
 	</div>
-	
-	
+
+
 
 	<!-- The Modal -->
 	<div id="modalUS" class="modal">
@@ -201,7 +201,7 @@
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
-	// When the user clicks on the button, open the modal 
+	// When the user clicks on the button, open the modal
 	btneditUS.onclick = function() {
 	    modalUS.style.display = "block";
 	}
@@ -213,7 +213,7 @@
 	}
 	btnaddGoal.onclick = function() {
 	    modalGoal.style.display = "block";
-	}		
+	}
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 	    modalUS.style.display = "none";

@@ -20,11 +20,11 @@
 <body>
 		<nav class="topnav">
 		<img src="img/basicsidlogo.png" class="logo-img"/>
-		<a href="index.html">Home</a>
+		<a href="/">Home</a>
 
-		<a href="projectbacklog.html">Project Backlog</a>
-		<a href="currentsprint.html">Current Sprint</a>
-		<a href="scrumboard.html">Scrum Board</a>
+		<!-- <a href="projectbacklog.html">Project Backlog</a> -->
+		<a href="/getSprint">Current Sprint</a>
+		<a href="/getTask">Scrum Board</a>
 		<a style="float:right" href="#logout">Logout</a>
  	</nav>
 
@@ -50,7 +50,7 @@
 		<ul><i class="far fa-circle"></i>	Once something is done, check the circle and it will move to a completed list</ul>
 		<h2>Completed</h2>
 		<ul><i class="far fa-check-circle"></i>    This isn't functional yet, but it will be soon and will look like this.</ul>
-		
+
 	</section>
 
 
@@ -93,10 +93,10 @@
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
-	// When the user clicks on the button, open the modal 
+	// When the user clicks on the button, open the modal
 	btnGSI.onclick = function() {
 	    modalGSI.style.display = "block";
-	}	
+	}
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 	    modalGSU.style.display = "none";
