@@ -93,6 +93,95 @@
       </table>
    </ul>
 
+
+   <br>
+   <br>
+   <form action="/getGoal" method="post">
+    <table class="center" width = 70%>
+      <tr>
+        <th>Goal Description: </th>
+        <th>MoSCoW: </th>
+      </tr>
+
+      <tr>
+        <td>
+          <input name='goalDescription' class="inline" placeholder='Description' required>
+        </td>
+        <td>
+          <input name='moscow' class="inline" placeholder='M/S/C/W' required>
+        </td>
+        <td id="add_box">
+          <p><input type="submit" value="Add Goal" id="add_button"> </p>
+        </td>
+      </tr>
+    </table>
+   </form>
+   <br>
+   <ul>
+     <table class="center" width = 75%>
+        {% for goal in goals %}
+          <tr>
+            <div class="goals">
+              <td width=100px>{{goal.goalDescription}}</td>
+              <td width=100px>{{goal.moscow}}</td>
+              <td width=100px> Status: {{goal.goalStatus}}</td>
+              <form action='/goalDone?key={{goal.key.urlsafe()}}' method='post'>
+                <td><input type="submit" name="done" value="Mark as Done"></td>
+              </form>
+              <form action='/delete?key={{goal.key.urlsafe()}}' method='post'>
+               <td><input type="submit" name="key" value="Delete Goal"></td>
+             </form>
+            </div>
+          </tr>
+        {% endfor %}
+      </table>
+   </ul>
+
+
+   <br>
+   <br>
+   <form action="/getUserStory" method="post">
+    <table class="center" width = 70%>
+      <tr>
+        <th>User Story Description: </th>
+        <th>Story Points: </th>
+      </tr>
+
+      <tr>
+        <td>
+          <input name='storyDescription' class="inline" placeholder='Description' required>
+        </td>
+        <td>
+          <input name='storyPoints' class="inline" type="number" step='1' placeholder='Points' required>
+        </td>
+        <td id="add_box">
+          <p><input type="submit" value="Add User Story" id="add_button"> </p>
+        </td>
+      </tr>
+    </table>
+   </form>
+   <br>
+   <ul>
+     <table class="center" width = 75%>
+        {% for story in stories %}
+          <tr>
+            <div class="stories">
+              <td width=100px>{{story.storyDescription}}</td>
+              <td width=100px>{{story.storyPoints}}</td>
+              <td width=100px> Status: {{story.storyStatus}}</td>
+              <form action='/storyDone?key={{story.key.urlsafe()}}' method='post'>
+                <td><input type="submit" name="done" value="Mark as Done"></td>
+              </form>
+              <form action='/delete?key={{story.key.urlsafe()}}' method='post'>
+               <td><input type="submit" name="key" value="Delete User Story"></td>
+             </form>
+            </div>
+          </tr>
+        {% endfor %}
+      </table>
+   </ul>
+
+
   <br>
   <br>
   <form action="/getTask" method="post">

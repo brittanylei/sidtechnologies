@@ -32,6 +32,34 @@ class Sprint(ndb.Model):
     scrumMeetDate = ndb.StringProperty()
     user_key = ndb.KeyProperty(kind = User)
 
+class Goal(ndb.Model):
+    goalDescription = ndb.StringProperty()
+    moscow = ndb.StringProperty()
+    goalStatus = ndb.StringProperty()
+    user_key = ndb.KeyProperty(kind = User)
+    sprint_key = ndb.KeyProperty(kind = Sprint)
+
+    goalStatus = 'Goal Created'
+    def setInProgress(self):
+        self.goalStatus = 'In Progress'
+
+    def setDone(self):
+        self.goalStatus = 'Done'
+
+class UserStory(ndb.Model):
+    storyDescription = ndb.StringProperty()
+    storyPoints = ndb.StringProperty()
+    storyStatus = ndb.StringProperty()
+    user_key = ndb.KeyProperty(kind = User)
+    sprint_key = ndb.KeyProperty(kind = Sprint)
+
+    storyStatus = 'User Story Created'
+    def setInProgress(self):
+        self.storyStatus = 'In Progress'
+
+    def setDone(self):
+        self.storyStatus = 'Done'
+
 class Task(ndb.Model):
     taskDescription = ndb.StringProperty()
     taskOwner = ndb.StringProperty()
@@ -76,6 +104,18 @@ class MainHandler(webapp2.RequestHandler):
                 'logout_url':logout_url}
 
                 tasks = Task.query(Task.user_key == user.key)
+                goals = Goal.query(Goal.user_key == user.key)
+                stories = UserStory.query(UserStory.user_key == user.key)
+
+                if goals:
+                    template_vals['goals'] = goals
+                else:
+                    template_vals['goals'] = []
+
+                if stories:
+                    template_vals['stories'] = stories
+                else:
+                    template_vals['stories'] = []
 
                 if tasks:
                     template_vals['tasks'] = tasks
@@ -88,7 +128,7 @@ class MainHandler(webapp2.RequestHandler):
 
         else:
             login_url = users.CreateLoginURL('/')
-            template = jinja_environment.get_template('home.html')
+            template = jinja_environment.get_template('login.html')
             template_vals = {'login_url':login_url}
             self.response.write(template.render(template_vals))
 
@@ -147,6 +187,77 @@ class ProjectHandler(webapp2.RequestHandler):
         newSprint.put()
         self.redirect('/')
 
+class GoalHandler(webapp2.RequestHandler):
+
+    def get(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+        user_key = user.key
+
+        template = jinja_environment.get_template('main.html')
+        logout_url = users.CreateLogoutURL('/')
+
+        goals = Goal.query(Goal.user_key == user.key)
+        self.response.write(
+        template.render({'user':user,'logout_url':logout_url, 'goals':goals})
+        )
+
+    def post(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+
+        user_key = user.key
+
+        goalDescription = self.request.get('goalDescription')
+        moscow = self.request.get('moscow')
+
+        sprint = Sprint.query(Sprint.user_key == user.key).get()
+
+        newGoal = Goal(goalDescription = goalDescription,
+        moscow = moscow, user_key = user.key,
+        sprint_key = sprint.key)
+
+        newGoal.put()
+        self.redirect('/')
+
+class UserStoryHandler(webapp2.RequestHandler):
+
+    def get(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+        user_key = user.key
+
+        template = jinja_environment.get_template('main.html')
+        stories = UserStory.query(UserStory.user_key == user.key)
+        logout_url = users.CreateLogoutURL('/')
+        self.response.write(
+        template.render({'user':user,'logout_url':logout_url,
+        'stories':stories})
+        )
+
+    def post(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+
+        user_key = user.key
+
+        storyDescription = self.request.get('storyDescription')
+        storyPoints = self.request.get('storyPoints')
+
+        sprint = Sprint.query(Sprint.user_key == user.key).get()
+
+        newUserStory = UserStory(storyDescription = storyDescription,
+        storyPoints = storyPoints, user_key = user.key,
+        sprint_key = sprint.key)
+
+        newUserStory.put()
+        self.redirect('/')
+
+
 class TaskHandler(webapp2.RequestHandler):
 
     def get(self):
@@ -200,6 +311,8 @@ class CompletedTaskHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/getProject', ProjectHandler),
+    ('/getGoal', GoalHandler),
+    ('/getUserStory', UserStoryHandler),
     ('/getTask', TaskHandler),
     ('/delete', DeleteHandler),
     ('/taskDone', CompletedTaskHandler),
