@@ -123,13 +123,13 @@ class MainHandler(webapp2.RequestHandler):
             email = current_user.email()
             username = email.split('@')[0]
 
-            current_users = User.query(User.email == email).fetch()
-
-            if not current_users:
-                user = User(username=username, email=email)
-                user.put()
-            else:
-                user = User.query(User.username == username).get()
+            # current_users = User.query(User.email == email).fetch()
+            #
+            # if not current_users:
+            #     user = User(username=username, email=email)
+            #     user.put()
+            # else:
+            #     user = User.query(User.username == username).get()
 
             sprints = Sprint.query(Sprint.user_key == user.key).fetch()
 
