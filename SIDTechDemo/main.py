@@ -1,18 +1,53 @@
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
+
 import jinja2
 import logging
 import webapp2
 import os
 
+import json
 import datetime
 from datetime import date
 from decimal import Decimal
 
+
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(template_dir))
+
+config = {
+  "apiKey": "apiKey",
+  "authDomain": "projectId.firebaseapp.com",
+  "databaseURL": "https://databaseName.firebaseio.com",
+  "storageBucket": "projectId.appspot.com"
+}
+
+# def _get_http():
+#     """Provides an authed http object."""
+#     http = httplib2.Http()
+#     # Use application default credentials to make the Firebase calls
+#     # https://firebase.google.com/docs/reference/rest/database/user-auth
+#     creds = GoogleCredentials.get_application_default().create_scoped(
+#         _FIREBASE_SCOPES)
+#     creds.authorize(http)
+#     return http
+#
+# def firebase_put(path, value=None):
+#     """Writes data to Firebase.
+#
+#     An HTTP PUT writes an entire object at the given database path. Updates to
+#     fields cannot be performed without overwriting the entire object
+#
+#     Args:
+#         path - the url to the Firebase object to write.
+#         value - a json string.
+#     """
+#     response, content = _get_http().request(path, method='PUT', body=value)
+#     return json.loads(content)
+
+
 
 class User(ndb.Model):
     username = ndb.StringProperty()
@@ -54,6 +89,11 @@ class MainHandler(webapp2.RequestHandler):
         # get info
         current_user = users.get_current_user()
 
+        # id_token = request.headers['Authorization'].split(' ').pop()
+        # claims = google.oauth2.id_token.verify_firebase_token(
+        #     id_token, HTTP_REQUEST)
+        # if not claims:
+        #     return 'Unauthorized', 401
 
         if current_user:
             logout_url = users.CreateLogoutURL('/')
