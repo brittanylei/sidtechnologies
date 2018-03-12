@@ -159,6 +159,32 @@ h2 {
 	margin-right: 20px;
 }
 
+.user-stories-section {
+	width: 55%;
+	float: left;
+	margin-top: 10px;
+}
+
+.goals-section {
+	margin-top: 10px;
+	width: 40%;
+	float: right;
+}
+
+.well h2
+{
+	margin-top: 0px;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.details {
+	font-size: 12px;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
