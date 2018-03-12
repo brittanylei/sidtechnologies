@@ -18,69 +18,30 @@
 </head>
 
 <body>
-	<nav class="topnav">
+		<nav class="topnav">
 		<img src="img/basicsidlogo.png" class="logo-img"/>
 		<a href="index.html">Home</a>
+
 		<a href="projectbacklog.html">Project Backlog</a>
-
-	  	<div class="dropdown">
-	  		<button class="dropbtn">Sprint Backlog<i class="fa fa-caret-down"></i></button>
-	  		<div class="dropdown-content">
-	  			<a href="#sprintbacklog">Sprint Backlog</a>
-	  			<a href="#sprintgoals">Sprint Goals</a>
-	  			<a href="#sprintuserstories">Sprint User Stories</a>
-	  			<a href="#sprinttasks">Sprint Tasks</a>
-	  		</div>
-	 	 </div>
-
-	  	<div class="dropdown">
-	  		<button class="dropbtn">Scrum Board<i class="fa fa-caret-down"></i></button>
-	  		<div class="dropdown-content">
-	  			<a href="#scrumboard">Scrum Board</a>
-	  			<a href="#todo">To Do</a>
-	  			<a href="#inprogress">In Progress</a>
-	  			<a href="#completed">Completed</a>
-	  		</div>
-	  	</div>
-
-	 	<a href="#burnupchart">Burn-up Chart</a>
-	  
-	  	<div class="search-container">
-	    	<form action="/action_page.php">
-	     		<input type="text" placeholder="Search.." name="search">
-	      		<button type="submit"><i class="fas fa-search"></i></button>
-	    	</form>
-	  	</div>
-
-	  	<div class="dropdown">
-	  		<button class="dropbtn"><i class="fa fa-user"></i></button>
-	  		<div class="dropdown-content">
-	  			<a href="profile.html">Profile</a>
-	  			<a href="#mytasks">My Tasks</a>
-	  			<a href="#settings">Settings</a>
-	  			<a href="#help">Help</a>
-	  			<a href="#logout">Logout</a>
-	  		</div>
-	  	</div>
-
-	  	<a><i class="fa fa-envelope"></i></a>
-	</nav>
+		<a href="currentsprint.html">Current Sprint</a>
+		<a href="scrumboard.html">Scrum Board</a>
+		<a style="float:right" href="#logout">Logout</a>
+ 	</nav>
 
 	<section class="general-sprint content-section">
-		<h2>General Sprint Information</h2>
-		<div id="titles" class="titles">
-			<ul>Product Owner</ul>
-			<ul>Scrum Master</ul>
-			<ul>Development Team</ul>
-			<ul>Sprint</ul>
-			<ul>Sprint Planning Meeting</ul>
-			<ul>Scrum Times</ul>
-			<ul>Sprint Review Meeting</ul>
-			<ul>Retrospective</ul>
-		</div>
-		<div class="entries">
-			<ul>Eva Lomazov</ul>
-		</div>
+		<h2>General Sprint Information
+			<button class="iconbtn" id="btnGSI"><i class="far fa-edit"></i></button>
+		</h2>
+		<table>
+			<tr><td>Product Owner</td><td>Eva Lomazov</td></tr>
+			<tr><td>Scrum Master</td><td>Emma Seligson</td></tr>
+			<tr><td>Development Team</td><td>Gerome Deguzman, Tian Lun Lee, Brittany Lei</td></tr>
+			<tr><td>Sprint</td><td>3</td></tr>
+			<tr><td>Sprint Planning Meeting</td><td>3/1/2018</td></tr>
+			<tr><td>Scrum Times</td><td>Monday: 8:00pm, Wednesday: 4:00pm, Friday: 11:00am </td></tr>
+			<tr><td>Sprint Review Meeting</td><td>3/12/2018</td></tr>
+			<tr><td>Retrospective</td><td>N/A</td></tr>
+		</table>
 	</section>
 
 	<section class="right-container content-section">
@@ -93,16 +54,57 @@
 	</section>
 
 
+	<div id="modalGSI" class="modal">
 
-
-
-
-
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <form>
+	    	Product Owner:<br>
+	    	<input type="text" name="productowner"><br>
+	    	Scrum Master:<br>
+	    	<input type="text" name="scrummaster"><br>
+	    	Development Team:<br>
+	    	<input type="text" name="devteam"><br>
+	    	Sprint:<br>
+	    	<input type="text" name="sprint"><br>
+	    	Sprint Planning Meeting:<br>
+	    	<input type="text" name="sprintplanningmeeting"><br>
+	    	Scrum Times:<br>
+	    	<input type="text" name="scrumtimes"><br>
+	    	Sprint Review Meeting:<br>
+	    	<input type="text" name="sprintreviewmeeting"><br>
+	    	Retrospective:<br>
+	    	<input type="text" name="retrospective"><br>
+	    	<input type="submit" value="Save">
+	    </form>
+	  </div>
+	</div>
 
 	<!-- jQuery -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="javascript/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var modalGSI = document.getElementById('modalGSI');
+	// Get the button that opens the modal
+	var btnGSI = document.getElementById("btnGSI");
 
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	// When the user clicks on the button, open the modal 
+	btnGSI.onclick = function() {
+	    modalGSI.style.display = "block";
+	}	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modalGSU.style.display = "none";
+	}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modalGSI) {
+	        modalGSI.style.display = "none";
+	    }
+	}</script>
 </body>
