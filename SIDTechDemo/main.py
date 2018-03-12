@@ -292,6 +292,18 @@ class UserStoryHandler(webapp2.RequestHandler):
         newUserStory.put()
         self.redirect('/')
 
+class SprintHandler(webapp2.RequestHandler):
+    def get(self):
+        current_user = users.get_current_user()
+        email = current_user.email()
+        user = User.query(User.email == email).get()
+        user_key = user.key
+
+        template = jinja_environment.get_template('currentsprint.html')
+        logout_url = users.CreateLogoutURL('/')
+        self.response.write(
+        template.render({'user':user,'logout_url':logout_url})
+        )
 
 class TaskHandler(webapp2.RequestHandler):
 
@@ -301,7 +313,7 @@ class TaskHandler(webapp2.RequestHandler):
         user = User.query(User.email == email).get()
         user_key = user.key
 
-        template = jinja_environment.get_template('main.html')
+        template = jinja_environment.get_template('index.html')
         logout_url = users.CreateLogoutURL('/')
         self.response.write(
         template.render({'user':user,'logout_url':logout_url})
@@ -351,4 +363,5 @@ app = webapp2.WSGIApplication([
     ('/getTask', TaskHandler),
     ('/delete', DeleteHandler),
     ('/taskDone', CompletedTaskHandler),
+    ('/getSprint', SprintHandler),
 ], debug=True)

@@ -2,6 +2,17 @@
 
 
 <head>
+  <nav class="topnav">
+    <img src="img/basicsidlogo.png" class="logo-img"/>
+    <a href="/">Home</a>
+
+    <!-- <a href="projectbacklog.html">Project Backlog</a> -->
+    <a href="/getSprint">Current Sprint</a>
+    <a href="/getTask">Scrum Board</a>
+    <form action="/">
+      <a style="float:right" class="button" id="out" href="{{logout_url}}">Log Out</a>
+    </form>
+  </nav>
   <style>
     td {
        border-bottom: 1px solid #ddd;
@@ -15,8 +26,9 @@
           <ul>
             <li><a href="/" id="home">Home</a></li>
             <li><a href="/getProject" class="active" id="create">Start Project</a></li>
-            <!-- <li><a href="/budgets">View Previous Budgets</a></li> -->
-            <li style="float: right"><form action="/"><a class="button" id="out" href="{{logout_url}}">Log Out</a></form></li>
+            <li><a href="/getTask">View Scrum Board</a></li>
+            <li><a href="/getSprint">View Sprint</a></li>
+            <li style="float: right"></li>
           </ul>
 
       </div>
@@ -25,6 +37,7 @@
 
 
 <body>
+
 
   <form action="/getProject" method="post">
     <table class="center" width = 70%>
