@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Sid Technologies</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Be Agile on the go!">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
+</head>
+
+<body>
+  <nav class="topnav">
+    <img src="img/basicsidlogo.png" class="logo-img"/>
+    <a href="/">Home</a>
+    <!-- <a href="projectbacklog.html">Project Backlog</a> -->
+
+      <div class="dropdown">
+        <button class="dropbtn">Sprint Backlog<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <a href="#sprintbacklog">Sprint Backlog</a>
+          <a href="#sprintgoals">Sprint Goals</a>
+          <a href="#sprintuserstories">Sprint User Stories</a>
+          <a href="#sprinttasks">Sprint Tasks</a>
+        </div>
+     </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Scrum Board<i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <a href="/getTask">Scrum Board</a>
+          <a href="#todo">To Do</a>
+          <a href="#inprogress">In Progress</a>
+          <a href="#completed">Completed</a>
+        </div>
+      </div>
+
+    <a href="#burnupchart">Burn-up Chart</a>
+
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn"><i class="fa fa-user"></i></button>
+        <div class="dropdown-content">
+          <a href="profile.html">Profile</a>
+          <a href="#mytasks">My Tasks</a>
+          <a href="#settings">Settings</a>
+          <a href="#help">Help</a>
+          <a href="#logout">Logout</a>
+        </div>
+      </div>
+
+      <a><i class="fa fa-envelope"></i></a>
+  </nav>
+
+
+<!-- Button to open the modal login form -->
+
+<!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button> -->
+
+<div id="firsthalf">
+  <a href="{{login_url}}"><button class="button" id="firstbutton">Login</button></a>
+</div>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"
+
+<body>
+
+</body>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+</body>
+
+</body>
