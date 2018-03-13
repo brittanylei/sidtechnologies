@@ -9,7 +9,7 @@ import os
 
 import json
 import datetime
-import pyrebase
+# import pyrebase
 from datetime import date
 from decimal import Decimal
 
@@ -18,16 +18,16 @@ template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(template_dir))
 
-config = {
-    apiKey: "AIzaSyDX8In6v77C3gMQB6L99mF2PQyLBtul28g",
-    authDomain: "silver-surfer-services.firebaseapp.com",
-    databaseURL: "https://silver-surfer-services.firebaseio.com",
-    projectId: "silver-surfer-services",
-    storageBucket: "silver-surfer-services.appspot.com",
-    messagingSenderId: "272241968147"
-    "serviceAccount": "~/SID Technologies-f6eab582014e.json"
-}
-firebase = pyrebase.initialize_app(config)
+# config = {
+#     apiKey: "AIzaSyDX8In6v77C3gMQB6L99mF2PQyLBtul28g",
+#     authDomain: "silver-surfer-services.firebaseapp.com",
+#     databaseURL: "https://silver-surfer-services.firebaseio.com",
+#     projectId: "silver-surfer-services",
+#     storageBucket: "silver-surfer-services.appspot.com",
+#     messagingSenderId: "272241968147"
+#     "serviceAccount": "~/SID Technologies-f6eab582014e.json"
+# }
+# firebase = pyrebase.initialize_app(config)
 
 
 # def _get_http():
