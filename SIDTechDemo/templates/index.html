@@ -99,23 +99,25 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <form>
+	    <form action="/getProject" method="post">
+        Product Name:<br>
+	    	<input type="text" name="projname"><br>
 	    	Product Owner:<br>
-	    	<input type="text" name="productowner"><br>
+	    	<input type="text" name="projowner"><br>
 	    	Scrum Master:<br>
 	    	<input type="text" name="scrummaster"><br>
 	    	Development Team:<br>
-	    	<input type="text" name="devteam"><br>
+	    	<input type="text" name="team"><br>
 	    	Sprint:<br>
-	    	<input type="text" name="sprint"><br>
+	    	<input type="text" name="sprintnum"><br>
 	    	Sprint Planning Meeting:<br>
-	    	<input type="text" name="sprintplanningmeeting"><br>
+	    	<input type="text" name="sprintplan"><br>
 	    	Scrum Times:<br>
-	    	<input type="text" name="scrumtimes"><br>
-	    	Sprint Review Meeting:<br>
-	    	<input type="text" name="sprintreviewmeeting"><br>
+	    	<input type="text" name="scrummeet"><br>
+	    	<!-- Sprint Review Meeting:<br>
+	    	<input type="text" name="sprintreviewmeeting"><br> -->
 	    	Retrospective:<br>
-	    	<input type="text" name="retrospective"><br>
+	    	<input type="text" name="sprintretro"><br>
 	    	<input type="submit" value="Save">
 	    </form>
 	  </div>

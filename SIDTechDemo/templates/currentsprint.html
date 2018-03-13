@@ -22,14 +22,14 @@
 		<!-- <a href="projectbacklog.html">Project Backlog</a> -->
 		<a href="/getSprint">Current Sprint</a>
 		<a href="/getTask">Scrum Board</a>
-		<a style="float:right" href="{{logout_url}}">Logout</a>
+		<a style="float:right" href="#logout">Logout</a>
  	</nav>
 
 
 	<div class="container">
 		<section class="project-story">
 			<h2>
-				Sprint
+				Sprint Story
 			</h2>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -93,12 +93,8 @@
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
 	    <form action="/getUserStory" method="post">
-	    	Description:<br>
+        Description:<br>
 	    	<input type="text" name="storyDescription"><br>
-	    	<!-- Details:<br>
-	    	<input type="text" name="userstorydetails"><br>
-	    	Goal Association:<br>
-	    	<input type="text" name="goalassociation"><br> -->
 	    	Number of Story Points:<br>
 	    	<input type="text" name="storyPoints"><br>
 	    	<input type="submit" value="Save">
@@ -106,14 +102,21 @@
 	  </div>
 	</div>
 
+  <form action="/getUserStory" method="post">
+    Description:<br>
+    <input type="text" name="storyDescription"><br>
+    Number of Story Points:<br>
+    <input type="text" name="storyPoints"><br>
+    <input type="submit" value="Save">
+  </form>
+
+
 	<div id="modalGoal" class="modal">
 
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <form action="/getGoal" method="post">
-	    	<!-- Name:<br>
-	    	<input type="text" name="goalname"><br> -->
+      <form action="/getGoal" method="post">
 	    	Details:<br>
 	    	<input type="text" name="goalDescription"><br>
 	    	MoSCoW Rating:<br>
@@ -122,6 +125,14 @@
 	    </form>
 	  </div>
 	</div>
+
+  <form action="/getGoal" method="post">
+    Details:<br>
+    <input type="text" name="goalDescription"><br>
+    MoSCoW Rating:<br>
+    <input type="text" name="moscow"><br>
+    <input type="submit" value="Save">
+  </form>
 
 	<!-- jQuery -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
