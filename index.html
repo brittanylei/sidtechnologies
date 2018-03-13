@@ -1,110 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <title>Sid Technologies</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Be Agile on the go!">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-
-</head>
-
-<body>
-		<nav class="topnav">
-		<img src="img/basicsidlogo.png" class="logo-img"/>
-		<a href="index.html">Home</a>
-
-		<a href="projectbacklog.html">Project Backlog</a>
-		<a href="currentsprint.html">Current Sprint</a>
-		<a href="scrumboard.html">Scrum Board</a>
-		<a style="float:right" href="#logout">Logout</a>
- 	</nav>
-
-	<section class="general-sprint content-section">
-		<h2>General Sprint Information
-			<button class="iconbtn" id="btnGSI"><i class="far fa-edit"></i></button>
-		</h2>
-		<table>
-			<tr><td>Product Owner</td><td>Eva Lomazov</td></tr>
-			<tr><td>Scrum Master</td><td>Emma Seligson</td></tr>
-			<tr><td>Development Team</td><td>Gerome Deguzman, Tian Lun Lee, Brittany Lei</td></tr>
-			<tr><td>Sprint</td><td>3</td></tr>
-			<tr><td>Sprint Planning Meeting</td><td>3/1/2018</td></tr>
-			<tr><td>Scrum Times</td><td>Monday: 8:00pm, Wednesday: 4:00pm, Friday: 11:00am </td></tr>
-			<tr><td>Sprint Review Meeting</td><td>3/12/2018</td></tr>
-			<tr><td>Retrospective</td><td>N/A</td></tr>
-		</table>
-	</section>
-
-	<section class="right-container content-section">
-		<h2>TODO List</h2>
-		<ul><i class="far fa-circle"></i>	This is a todo list</ul>
-		<ul><i class="far fa-circle"></i>	Once something is done, check the circle and it will move to a completed list</ul>
-		<h2>Completed</h2>
-		<ul><i class="far fa-check-circle"></i>    This isn't functional yet, but it will be soon and will look like this.</ul>
-		
-	</section>
-
-
-	<div id="modalGSI" class="modal">
-
-	  <!-- Modal content -->
-	  <div class="modal-content">
-	    <span class="close">&times;</span>
-	    <form>
-	    	Product Owner:<br>
-	    	<input type="text" name="productowner"><br>
-	    	Scrum Master:<br>
-	    	<input type="text" name="scrummaster"><br>
-	    	Development Team:<br>
-	    	<input type="text" name="devteam"><br>
-	    	Sprint:<br>
-	    	<input type="text" name="sprint"><br>
-	    	Sprint Planning Meeting:<br>
-	    	<input type="text" name="sprintplanningmeeting"><br>
-	    	Scrum Times:<br>
-	    	<input type="text" name="scrumtimes"><br>
-	    	Sprint Review Meeting:<br>
-	    	<input type="text" name="sprintreviewmeeting"><br>
-	    	Retrospective:<br>
-	    	<input type="text" name="retrospective"><br>
-	    	<input type="submit" value="Save">
-	    </form>
-	  </div>
-	</div>
-
-	<!-- jQuery -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="javascript/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    var modalGSI = document.getElementById('modalGSI');
-	// Get the button that opens the modal
-	var btnGSI = document.getElementById("btnGSI");
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
-	// When the user clicks on the button, open the modal 
-	btnGSI.onclick = function() {
-	    modalGSI.style.display = "block";
-	}	
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	    modalGSU.style.display = "none";
-	}
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modalGSI) {
-	        modalGSI.style.display = "none";
-	    }
-	}</script>
-</body>
+    
+    <head>
+        
+        <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+                    <meta name="description" content="SIDTECH home">
+                        <meta name="author" content="Gerome DeGuzman">
+                            
+                            <title>S.I.D. Technologies</title>
+                            
+                            <!-- Bootstrap core CSS -->
+                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+                                <link rel="stylesheet" type="text/css" href="css/styles.css">
+                                    
+    </head>
+    
+    
+    <body>
+        
+        
+        <div class="container">
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-xs-right">
+                    </ul>
+                </nav>
+                <h3 class="text-muted"><img src="img/basicsidlogo.png" class="logo-img"/></h3>
+                <hr/>
+            </div>
+            
+            <div class="jumbotron">
+                <h1 class="display-3">Be Agile on the go!</h1>
+                <hr/>
+                <!-- Button to open the modal login form -->
+                <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+                
+            </div>
+            
+            <div class="row marketing">
+                <div class="col-lg-6">
+                    <h4>About the project</h4>
+                    <p>The project owner commutes to Santa Cruz from Los Altos on mornings she has class: Tuesdays, Wednesdays and Thursdays.
+                    On Mondays and Fridays, she works. This forces our team to hold scrum meetings through a videochat most days making a physical burnup chart basically useless.
+                    Inspired by our inability to find a good online scrum burnup chart template,
+                    S.I.D. Technologies aims to create an app with a fully integrated and color-coded scrum system that is affordable and user-friendly.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h4>About the name</h4>
+                    <p>S.I.D. is an abbreviation for the Latin phrase, Semel In Die, which means "once a day", a reference to the scrum meetings that are supposed to happen once a day. But also, Scrum Is Dope.</p>
+                    
+                </div>
+            </div>
+            
+            <footer class="footer">
+                <hr/>
+                <p><b>UCSC CMPS 115 Winter 2018</b></p>
+            </footer>
+            
+            
+            <!-- The Modal -->
+            <div id="id01" class="modal">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                    class="close" title="Close Modal">&times;</span>
+                
+                <!-- Modal Content -->
+                <form class="modal-content animate" action="/action_page.php">
+                    
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+                            
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                                
+                                <button type="submit">Login</button>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                                        </label>
+                                </div>
+                    
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                        
+                    </div>
+                </form>
+            </div>
+    </body>
