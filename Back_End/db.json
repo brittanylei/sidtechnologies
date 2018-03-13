@@ -1,0 +1,32 @@
+{
+"projects": [{
+    "projectid": [{
+        "projectName": "testName",
+        "projectMembers": [{
+        "member": "null"
+        }]
+    }]
+    }],
+        "users": [{
+        "useruid": [{
+        "firstName": "testName1",
+                "lastName": "testName2",
+                "email": "test@gmail.com",
+                "projects": [{
+                "projectName": "test"
+                }]
+        }]
+        }],
+        "tasks": [{
+        "taskid": [{
+        "projectid": [{
+        "taskText": "SampleText",
+                "useruid": "useruid",
+                "todo": true,
+                "inprogress": false,
+                "done": false
+        }]
+        }]
+        }]
+}
+
